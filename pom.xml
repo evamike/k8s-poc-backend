@@ -43,6 +43,29 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.35.0</version>
+				<configuration>
+					<verbose>true</verbose>
+					<images>
+						<image>
+							<name>YOUR_DOCKERHUB_USERNAME/${project.artifactId}</name>
+							<build>
+								<assembly>
+									<descriptorRef>artifact</descriptorRef>
+								</assembly>
+								<dockerFile>Dockerfile</dockerFile>
+								<tags>
+									<tag>latest</tag>
+									<tag>${project.version}</tag>
+								</tags>
+							</build>
+						</image>
+					</images>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>

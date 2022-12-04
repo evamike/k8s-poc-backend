@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 public class DemoService {
 
   public Demo getDemo() {
-    return Demo.builder().title("demo").build();
+    log.info("Requested demo.");
+    Demo demo = Demo.builder().title("demo").build();
+    log.info("Received demo = {}.", demo);
+    return demo;
   }
 }

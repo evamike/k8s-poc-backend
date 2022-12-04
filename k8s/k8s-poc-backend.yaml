@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-poc-backend
+  labels:
+    app: k8s-poc-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-poc-backend
+  template:
+    metadata:
+      labels:
+        app: k8s-poc-backend
+    spec:
+      containers:
+        - image: YOUR_DOCKERHUB_USERNAME/k8s-poc-backend
+          name: k8s-poc-backend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-poc-backend-service
+spec:
+  ports:
+    - name: 8080-8080
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: k8s-poc-backend
+  type: ClusterIP
